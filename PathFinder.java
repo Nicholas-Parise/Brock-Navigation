@@ -8,17 +8,11 @@ public class PathFinder {
 
     Map map;
 
-    int dist[];
-    Set<Integer> visited;
-    PriorityQueue<Node> pqueue;
-    int V; // Number of vertices
-
-
     public PathFinder(Map map){
         this.map = map;
     }
 
-    public Node[] shortestPath(String start, String end){
+    public ArrayList<Node> shortestPath(String start, String end){
 
         Node s = map.getNode(start);
         Node e = map.getNode(end);
@@ -27,61 +21,57 @@ public class PathFinder {
     }
 
 
-    public Node[] shortestPath(Node start, Node end){
-/*
-        dist = new int[V];
-        visited = new HashSet<Integer>();
-        pqueue = new PriorityQueue<Node>(V, new Node());
+    public ArrayList<Node> shortestPath(Node start, Node end){
+
+        int V = map.getGraph().size();
+
+        double dist[] = new double[V];
+        Node prev[] = new Node[V];
+        PriorityQueue<Node> pqueue = new PriorityQueue<Node>(V);
+
+        ArrayList<Node> sequence = new ArrayList<>();
+
+        dist[start.getId()] = 0;
+        pqueue.add(start.setPriority(0));
+
+        for (int i = 0; i < V; i++) {
+            if(i!=start.getId()) {
+                dist[i] = Double.MAX_VALUE;
+                prev[i] = null;
+            }
+        }
 
 
-        for (int i = 0; i < V; i++)
-            dist[i] = Integer.MAX_VALUE;
+        while (!pqueue.isEmpty()){
 
-        // first add source vertex to PriorityQueue
-        pqueue.add(new Node(src_vertex, 0));
+            Node current = pqueue.poll();
 
-        // Distance to the source from itself is 0
-        dist[src_vertex] = 0;
-        while (visited.size() != V) {
+            if(current == end){
+                    // found the end
+                while(current != null){
+                    sequence.add(0,current);
+                    current = prev[current.getId()];
+                }
+                return sequence;
+            }
 
-            // u is removed from PriorityQueue and has min distance
-            int u = pqueue.remove().node;
+            for (Edge v:current.getEdge()) {
+                double altDist = dist[current.getId()] + v.getDistance();
 
-            // add node to finalized list (visited)
-            visited.add(u);
-            graph_adjacentNodes(u);
+                if(altDist < dist[v.getDestination().getId()]){
 
+                    dist[v.getDestination().getId()] = altDist;
+                    prev[v.getDestination().getId()] = current;
+                    pqueue.add(v.getDestination().setPriority(altDist));
+                }
+            }
+        }
 
- */
 
         return null;
     }
 
 
-        private void graph_adjacentNodes(int u)   {
-            int edgeDistance = -1;
-            int newDistance = -1;
-/*
-            // process all neighbouring nodes of u
-            for (int i = 0; i < map.graph.size(); i++) {
-                Node v = map.graph.get(u);
-
-                //  proceed only if current node is not in 'visited'
-                if (!visited.contains(v.node)) {
-                    edgeDistance = v.cost;
-                    newDistance = dist[u] + edgeDistance;
-
-                    // compare distances
-                    if (newDistance < dist[v.node])
-                        dist[v.node] = newDistance;
-
-                    // Add the current vertex to the PriorityQueue
-                    pqueue.add(new Node(v.node, dist[v.node]));
-                }
-            }
-            }
-            */
-        }
 
 
 

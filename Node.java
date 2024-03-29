@@ -2,7 +2,7 @@ package BrockNavigation;
 
 import java.util.ArrayList;
 
-public class Node {
+public class Node implements Comparable<Node>{
 
     int id;
     double longitude;
@@ -12,6 +12,8 @@ public class Node {
     String description;
     NodeType type;
     ArrayList<Edge> edges;
+
+    double priority; // used for the pathfinder
 
     public Node(int id, double longitude, double latitude, int floor, String Label, String description, NodeType type){
         this.id = id;
@@ -63,6 +65,15 @@ public class Node {
     }
 
 
+    public double getPriority() {
+        return priority;
+    }
+
+    public Node setPriority(double priority) {
+        this.priority = priority;
+        return this;
+    }
+
     @Override
     public String toString() {
         return "Node{" +
@@ -74,5 +85,10 @@ public class Node {
                 ", description='" + description + '\'' +
                 ", type=" + type +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Node o) {
+        return Double.compare(getPriority(), o.getPriority());
     }
 }

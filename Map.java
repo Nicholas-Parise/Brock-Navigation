@@ -14,6 +14,8 @@ public class Map {
     ArrayList<Node> traversal;
     ArrayList<Node> stairs;
 
+    PathFinder pathFinder;
+
     public Map(){
 
         graph = new ArrayList<Node>();
@@ -21,12 +23,22 @@ public class Map {
         traversal = new ArrayList<Node>();
         stairs = new ArrayList<Node>();
 
+        pathFinder = new PathFinder(this);
+
         readInNodes("points.csv");
         readInEdges("edges.csv");
 
         for (Node n: getClosestNode(-79.247719,43.119404,5)) {
             System.out.println(n);
         }
+
+        System.out.println("\n\n");
+
+        for (Node n: pathFinder.shortestPath(graph.get(0),graph.get(53))) {
+            System.out.println(n);
+        }
+
+
 
 
 
