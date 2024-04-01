@@ -1,15 +1,16 @@
 package BrockNavigation;
 
+import java.util.ArrayList;
+
 public class User {
 
     double longitude;
     double latitude;
     Node currentNode;
 
-    public User(double longitude, double latitude){
-    this.longitude = longitude;
-    this.latitude = latitude;
-    }
+    ArrayList<Node> path;
+
+    public User(){}
 
     public double getLatitude() {
         return latitude;
@@ -26,4 +27,12 @@ public class User {
     public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
+
+    public Node getCurrentNode() {return currentNode;}
+
+    public void setCurrentNode(Node currentNode) {this.currentNode = currentNode;}
+
+    public void setPath(ArrayList<Node> path) {this.path = path;}
+
+    public ArrayList<Node> getPath() {return path;}
 }

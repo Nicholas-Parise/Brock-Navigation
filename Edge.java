@@ -28,7 +28,6 @@ public class Edge implements Comparable<Edge>{
     public String toString() {
         return "Edge{" +
                 "destination=" + destination +
-                ", distance=" + distance +
-                '}';
+                ", distance=" + distance + '}';
     }
 }

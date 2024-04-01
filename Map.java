@@ -6,49 +6,32 @@ import java.util.*;
 
 public class Map {
 
-    static final int EARTH = 6371000;
+    private static final int EARTH = 6371000;
 
     ArrayList<Node> graph;
 
     ArrayList<Node> rooms;
     ArrayList<Node> traversal;
     ArrayList<Node> stairs;
+    ArrayList<Node> bathrooms;
 
-    PathFinder pathFinder;
+    public Map(String points, String edges){
 
-    public Map(){
+        graph = new ArrayList<>();
+        rooms = new ArrayList<>();
+        traversal = new ArrayList<>();
+        stairs = new ArrayList<>();
+        bathrooms = new ArrayList<>();
 
-        graph = new ArrayList<Node>();
-        rooms = new ArrayList<Node>();
-        traversal = new ArrayList<Node>();
-        stairs = new ArrayList<Node>();
-
-        pathFinder = new PathFinder(this);
-
-        readInNodes("points.csv");
-        readInEdges("edges.csv");
-
-        for (Node n: getClosestNode(-79.247719,43.119404,5)) {
-            System.out.println(n);
-        }
-
-        System.out.println("\n\n");
-
-        for (Node n: pathFinder.shortestPath(graph.get(0),graph.get(53))) {
-            System.out.println(n);
-        }
-
-
-
-
-
+        readInNodes(points);
+        readInEdges(edges);
     }
 
-    public ArrayList<Node> getGraph() {
+    protected ArrayList<Node> getGraph() {
         return graph;
     }
 
-    public void readInNodes(String filename){
+    private void readInNodes(String filename){
 
         try {
             File myObj = new File(filename);
@@ -84,6 +67,9 @@ public class Map {
                     case STAIRS:
                         stairs.add(temp);
                         break;
+                    case BATHROOM:
+                        bathrooms.add(temp);
+                        break;
                 }
             }
 
@@ -94,7 +80,7 @@ public class Map {
         }
     }
 
-    public void readInEdges(String filename){
+    private void readInEdges(String filename){
 
         try {
             File myObj = new File(filename);
@@ -121,69 +107,6 @@ public class Map {
         }
     }
 
-
-    /**
-     * returns absolute closest node to provided coordinates
-     *
-     * @param longitude
-     * @param latitude
-     * @return
-     */
-    public Node getClosestNode(double longitude, double latitude){
-
-        double distance = Double.MAX_VALUE;
-        double tempDist;
-        Node currentBest = null;
-
-        for (Node node: rooms) {
-
-            tempDist = calculateDistance(node, longitude, latitude);
-
-            if(tempDist < distance){
-                distance = tempDist;
-                currentBest = node;
-            }
-        }
-        return currentBest;
-    }
-
-    /**
-     *
-     * @param longitude
-     * @param latitude
-     * @param number
-     * @return
-     */
-    public ArrayList<Node> getClosestNode(double longitude, double latitude, int number){
-
-        double distance = Double.MAX_VALUE;
-        double dist;
-        Node currentBest;
-
-        // here we use the Edge class since it contains distance information and a Node
-        PriorityQueue<Edge> pq = new PriorityQueue<>(10);
-        ArrayList<Node> closest = new ArrayList<Node>();
-
-        for (Node node: rooms) {
-
-            dist = calculateDistance(node, longitude, latitude);
-
-            pq.add(new Edge(node,dist));
-        }
-
-
-        for (int i = 0; i < number; i++) {
-            closest.add(pq.poll().getDestination());
-        }
-       // System.out.println(closest);
-
-        return closest;
-    }
-
-
-
-
-
     /**
      *
      * @param id1 first node
@@ -201,6 +124,117 @@ public class Map {
     }
 
 
+    private NodeType convertType(char nt){
+        switch (nt){
+            case 'S':
+            case 's':
+                return NodeType.STAIRS;
+            case 'R':
+            case 'r':
+                return NodeType.ROOM;
+            case 'B':
+            case 'b':
+                return NodeType.BATHROOM;
+            case 'T':
+            case 't':
+            default:
+                return NodeType.HALLWAY;
+        }
+    }
+
+
+
+    /**
+     * returns the closest room node to provided coordinates
+     * @param longitude current long
+     * @param latitude current long
+     * @return room node
+     */
+    protected Node getClosestNode(double longitude, double latitude){
+
+        return getClosestNode(longitude,latitude,2,NodeType.ROOM).get(0);
+    }
+
+
+    /**
+     * get the closest node of type: type
+     * @param longitude current long
+     * @param latitude current lat
+     * @param type NodeType parameter
+     * @return closest node of type: type
+     */
+   protected Node getClosestNode(double longitude, double latitude, NodeType type) {
+       return getClosestNode(longitude,latitude,2,type).get(0);
+    }
+
+
+    /**
+     * This method will return a list of the closest room nodes to the provided coordinates
+     * @param longitude current long
+     * @param latitude current lat
+     * @param number amount of elements in array
+     * @return list of the closest rooms
+     */
+    protected ArrayList<Node> getClosestNode(double longitude, double latitude, int number){
+        return getClosestNode(longitude,latitude,number,NodeType.ROOM);
+    }
+
+
+    /**
+     * This method will return a list of the closest type of nodes to the provided coordinates
+     * @param longitude current long
+     * @param latitude current lat
+     * @param number amount of elements in array
+     * @param type NodeType parameter
+     * @return list of the closest nodes of type: type
+     */
+    protected ArrayList<Node> getClosestNode(double longitude, double latitude, int number, NodeType type) {
+
+        double dist;
+        ArrayList<Node> temp;
+
+        // here we use the Edge class since it contains distance information and a Node
+        PriorityQueue<Edge> pq = new PriorityQueue<>(10);
+        ArrayList<Node> closest = new ArrayList<>();
+
+        switch (type){
+            case HALLWAY:
+                temp = traversal;
+                break;
+            case STAIRS:
+                temp = stairs;
+                break;
+            case BATHROOM:
+                temp = bathrooms;
+                break;
+            case ROOM:
+            default:
+                temp = rooms;
+                break;
+        }
+
+        for (Node node: temp) {
+            dist = calculateDistance(node, longitude, latitude);
+            pq.add(new Edge(node,dist));
+        }
+
+
+        for (int i = 0; i < number; i++) {
+            if(!pq.isEmpty()) {
+                closest.add(pq.poll().getDestination());
+            }
+        }
+
+        return closest;
+    }
+
+
+
+
+
+
+
+
     /**
      * calculate distance between 2 two points in latitude and longitude
      * @param lon1 longitude 1
@@ -209,7 +243,7 @@ public class Map {
      * @param lat2 latitude 2
      * @return
      */
-    public double calculateDistance(double lon1, double lat1, double lon2, double lat2) {
+    protected double calculateDistance(double lon1, double lat1, double lon2, double lat2) {
 
         double latDistance = Math.toRadians(lat2 - lat1);
 
@@ -221,9 +255,7 @@ public class Map {
 
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
-        double distance = c * EARTH;
-
-        return distance;
+        return c * EARTH;
     }
 
 
@@ -234,19 +266,24 @@ public class Map {
      * @param end end node
      * @return
      */
-    public double calculateDistance(Node start, Node end){
+    protected double calculateDistance(Node start, Node end){
 
         return calculateDistance(start.getLongitude(), start.getLatitude(), end.getLongitude(), end.getLatitude());
     }
 
 
-    public double calculateDistance(Node start, double lon2, double lat2){
+    protected double calculateDistance(Node start, double lon2, double lat2){
         return calculateDistance(start.getLongitude(), start.getLatitude(), lon2, lat2);
     }
 
 
-
-    public double findDistance(Node a, Node b){
+    /**
+     * if the two nodes share an edge, quickly get the distance between them.
+     * @param a
+     * @param b
+     * @return
+     */
+    protected double findDistance(Node a, Node b){
 
         for (Edge e: a.getEdge()) {
 
@@ -258,10 +295,15 @@ public class Map {
     }
 
 
-    public Node getNode(String label){
+    /**
+     * converts a label into a node
+     * @param label
+     * @return
+     */
+    protected Node getNode(String label){
 
         for (Node node: rooms) {
-            if(node.getLabel().equals(label)){
+            if(node.getLabel().equalsIgnoreCase(label)){
                 return node;
             }
         }
@@ -271,24 +313,6 @@ public class Map {
 
 
 
-    private NodeType convertType(char nt){
-        switch (nt){
-            case 'S':
-            case 's':
-                return NodeType.STAIRS;
-            case 'T':
-            case 't':
-                return NodeType.HALLWAY;
-            case 'R':
-            case 'r':
-                return NodeType.ROOM;
-            case 'B':
-            case 'b':
-                return NodeType.BATHROOM;
-            default:
-                return NodeType.HALLWAY;
-        }
-    }
 
 
 
