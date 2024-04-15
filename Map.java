@@ -14,6 +14,7 @@ public class Map {
     ArrayList<Node> traversal;
     ArrayList<Node> stairs;
     ArrayList<Node> bathrooms;
+    ArrayList<Node> doors;
 
     public Map(String points, String edges){
 
@@ -22,6 +23,7 @@ public class Map {
         traversal = new ArrayList<>();
         stairs = new ArrayList<>();
         bathrooms = new ArrayList<>();
+        doors = new ArrayList<>();
 
         readInNodes(points);
         readInEdges(edges);
@@ -69,6 +71,9 @@ public class Map {
                         break;
                     case BATHROOM:
                         bathrooms.add(temp);
+                        break;
+                    case DOOR:
+                        doors.add(temp);
                         break;
                 }
             }
@@ -135,6 +140,9 @@ public class Map {
             case 'B':
             case 'b':
                 return NodeType.BATHROOM;
+            case 'D':
+            case 'd':
+                return NodeType.DOOR;
             case 'T':
             case 't':
             default:
@@ -207,9 +215,14 @@ public class Map {
             case BATHROOM:
                 temp = bathrooms;
                 break;
+            case DOOR:
+                temp = doors;
+                break;
             case ROOM:
-            default:
                 temp = rooms;
+                break;
+            default:
+                temp = graph;
                 break;
         }
 

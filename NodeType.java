@@ -2,5 +2,5 @@ package BrockNavigation;
 
 public enum NodeType {
 
-    HALLWAY,STAIRS,ROOM,BATHROOM;
+    HALLWAY,STAIRS,ROOM,BATHROOM,DOOR;
 }
