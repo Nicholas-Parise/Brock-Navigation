@@ -2,9 +2,10 @@ package BrockNavigation;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.Serializable;
 import java.util.*;
 
-public class Map {
+public class Map implements Serializable {
 
     private static final int EARTH = 6371000;
 

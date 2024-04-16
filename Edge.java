@@ -1,6 +1,8 @@
 package BrockNavigation;
 
-public class Edge implements Comparable<Edge>{
+import java.io.Serializable;
+
+public class Edge implements Serializable, Comparable<Edge>{
 
     Node destination;
     double distance;

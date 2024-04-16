@@ -1,8 +1,9 @@
 package BrockNavigation;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Node implements Comparable<Node>{
+public class Node implements Serializable, Comparable<Node>{
 
     int id;
     double longitude;

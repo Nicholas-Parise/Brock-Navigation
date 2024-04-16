@@ -1,10 +1,11 @@
 package BrockNavigation;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.PriorityQueue;
 import java.util.Set;
 
-public class PathFinder {
+public class PathFinder implements Serializable {
 
     Map map;
 

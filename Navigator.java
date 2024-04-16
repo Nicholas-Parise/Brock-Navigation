@@ -1,5 +1,6 @@
 package BrockNavigation;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.PriorityQueue;
 
@@ -7,7 +8,7 @@ import java.util.PriorityQueue;
  * A composition class to make it easier to interact with the code
  */
 
-public class Navigator {
+public class Navigator implements Serializable {
 
     Map map;
     PathFinder pathFinder;
