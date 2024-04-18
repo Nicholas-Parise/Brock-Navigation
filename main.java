@@ -11,6 +11,13 @@ public class main {
             System.out.println(n);
         }
 
+        System.out.println();
+
+
+        for (Node n: nav.getClosestNode(-79.247719,43.119404,5,3)) {
+            System.out.println(n);
+        }
+
 
 
     }

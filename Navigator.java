@@ -28,41 +28,111 @@ public class Navigator implements Serializable {
         return pathFinder.shortestPath(start,end);
     }
 
+
+    /**
+     * returns the closest room node to provided coordinates
+     * @param longitude current long
+     * @param latitude current long
+     * @return room node
+     */
     public Node getClosestNode(double longitude, double latitude){
-        return map.getClosestNode(longitude,latitude);
+
+        return map.getClosestNode(longitude,latitude,2,NodeType.ROOM,-1).get(0);
     }
 
-    public ArrayList<Node> getClosestNode(double longitude, double latitude, int number){
-        return map.getClosestNode(longitude,latitude,number);
-    }
 
+    /**
+     * get the closest node of type: type, on all floors
+     * @param longitude current long
+     * @param latitude current lat
+     * @param type NodeType parameter
+     * @return closest node of type: type
+     */
     public Node getClosestNode(double longitude, double latitude, NodeType type) {
-        return map.getClosestNode(longitude,latitude,type);
+        return map.getClosestNode(longitude,latitude,2,type,-1).get(0);
     }
 
-    public ArrayList<Node> getClosestNode(double longitude, double latitude, int number, NodeType type) {
-        return map.getClosestNode(longitude,latitude,number,type);
+
+    /**
+     * get the closest node of type: type on a specific floor
+     * @param longitude current long
+     * @param latitude current lat
+     * @param type NodeType parameter
+     * @param floor int of floor (-1 is for all floors)
+     * @return closest node of type: type
+     */
+    public Node getClosestNode(double longitude, double latitude, NodeType type, int floor) {
+        return map.getClosestNode(longitude,latitude,2,type,floor).get(0);
     }
 
-    public double calculateDistance(double lon1, double lat1, double lon2, double lat2) {
-        return map.calculateDistance(lon1,lat1,lon2,lat2);
+
+    /**
+     * This method will return a list of the closest rooms
+     * @param longitude current long
+     * @param latitude current lat
+     * @param number amount of elements in array
+     * @return list of the closest rooms
+     */
+    public ArrayList<Node> getClosestNode(double longitude, double latitude, int number){
+        return map.getClosestNode(longitude,latitude,number,NodeType.ROOM,-1);
     }
 
-    public double calculateDistance(Node start, Node end){
-        return map.calculateDistance(start,end);
+
+
+
+    /**
+     * This method will return a list of the closest room nodes to the provided coordinates
+     * @param longitude current long
+     * @param latitude current lat
+     * @param number amount of elements in array
+     * @param floor int of floor (-1 is for all floors)
+     * @return list of the closest rooms
+     */
+    public ArrayList<Node> getClosestNode(double longitude, double latitude, int number, int floor){
+        return map.getClosestNode(longitude,latitude,number,NodeType.ROOM,floor);
     }
 
-    public double calculateDistance(Node start, double lon2, double lat2){
-        return map.calculateDistance(start,lon2,lat2);
+
+    /**
+     * This method will return a list of the closest type of nodes to the provided coordinates
+     * @param longitude current long
+     * @param latitude current lat
+     * @param number amount of elements in array
+     * @param type NodeType parameter
+     * @param floor specific floor of node (-1 is for all floors)
+     * @return list of the closest nodes of type: type
+     */
+    protected ArrayList<Node> getClosestNode(double longitude, double latitude, int number, NodeType type, int floor) {
+        return map.getClosestNode(longitude,latitude,number,type,floor);
     }
 
-    public double findDistance(Node a, Node b){
-        return map.findDistance(a,b);
+
+
+    public static double calculateDistance(double lon1, double lat1, double lon2, double lat2) {
+        return Map.calculateDistance(lon1,lat1,lon2,lat2);
     }
+
+
+    public static double calculateDistance(Node start, Node end){
+        return Map.calculateDistance(start,end);
+    }
+
+
+    public static double calculateDistance(Node start, double lon2, double lat2){
+        return Map.calculateDistance(start,lon2,lat2);
+    }
+
+
+    public static double findDistance(Node a, Node b){
+        return Map.findDistance(a,b);
+    }
+
 
     public Node getNode(String label){
         return map.getNode(label);
     }
 
+
+    public ArrayList<Node> getRooms(){return map.getRooms();}
 
 }

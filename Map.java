@@ -34,6 +34,14 @@ public class Map implements Serializable {
         return graph;
     }
 
+    public ArrayList<Node> getRooms() {
+        return rooms;
+    }
+
+    /**
+     * read in the node file and add it to the graph array list
+     * @param filename
+     */
     private void readInNodes(String filename){
 
         try {
@@ -59,7 +67,7 @@ public class Map implements Serializable {
                 Node temp = new Node(id,longitude,latitude,floor,label,description,convertType(type));
 
                 graph.add(id,temp);
-
+                // add the specific nodes to their respective node type array list to save search time
                 switch (convertType(type)){
                     case ROOM:
                         rooms.add(temp);
@@ -86,6 +94,11 @@ public class Map implements Serializable {
         }
     }
 
+
+    /**
+     * read in the edge file and add the edges to the graph array list
+     * @param filename
+     */
     private void readInEdges(String filename){
 
         try {
@@ -114,7 +127,7 @@ public class Map implements Serializable {
     }
 
     /**
-     *
+     * add edge to graph
      * @param id1 first node
      * @param id2 destination node
      */
@@ -130,6 +143,11 @@ public class Map implements Serializable {
     }
 
 
+    /**
+     * turn char into corresponding nodeType
+     * @param nt node type char
+     * @return corresponding node type
+     */
     private NodeType convertType(char nt){
         switch (nt){
             case 'S':
@@ -152,52 +170,16 @@ public class Map implements Serializable {
     }
 
 
-
-    /**
-     * returns the closest room node to provided coordinates
-     * @param longitude current long
-     * @param latitude current long
-     * @return room node
-     */
-    protected Node getClosestNode(double longitude, double latitude){
-
-        return getClosestNode(longitude,latitude,2,NodeType.ROOM).get(0);
-    }
-
-
-    /**
-     * get the closest node of type: type
-     * @param longitude current long
-     * @param latitude current lat
-     * @param type NodeType parameter
-     * @return closest node of type: type
-     */
-   protected Node getClosestNode(double longitude, double latitude, NodeType type) {
-       return getClosestNode(longitude,latitude,2,type).get(0);
-    }
-
-
-    /**
-     * This method will return a list of the closest room nodes to the provided coordinates
-     * @param longitude current long
-     * @param latitude current lat
-     * @param number amount of elements in array
-     * @return list of the closest rooms
-     */
-    protected ArrayList<Node> getClosestNode(double longitude, double latitude, int number){
-        return getClosestNode(longitude,latitude,number,NodeType.ROOM);
-    }
-
-
     /**
      * This method will return a list of the closest type of nodes to the provided coordinates
      * @param longitude current long
      * @param latitude current lat
      * @param number amount of elements in array
      * @param type NodeType parameter
+     * @param floor specific floor of node (-1 is for all floors)
      * @return list of the closest nodes of type: type
      */
-    protected ArrayList<Node> getClosestNode(double longitude, double latitude, int number, NodeType type) {
+    protected ArrayList<Node> getClosestNode(double longitude, double latitude, int number, NodeType type, int floor) {
 
         double dist;
         ArrayList<Node> temp;
@@ -229,7 +211,10 @@ public class Map implements Serializable {
 
         for (Node node: temp) {
             dist = calculateDistance(node, longitude, latitude);
-            pq.add(new Edge(node,dist));
+            // if the floor is equal to floor. Or if there is the all flag
+            if(floor == -1 || floor == node.getFloor()) {
+                pq.add(new Edge(node, dist));
+            }
         }
 
 
@@ -244,11 +229,6 @@ public class Map implements Serializable {
 
 
 
-
-
-
-
-
     /**
      * calculate distance between 2 two points in latitude and longitude
      * @param lon1 longitude 1
@@ -257,7 +237,7 @@ public class Map implements Serializable {
      * @param lat2 latitude 2
      * @return
      */
-    protected double calculateDistance(double lon1, double lat1, double lon2, double lat2) {
+    public static double calculateDistance(double lon1, double lat1, double lon2, double lat2) {
 
         double latDistance = Math.toRadians(lat2 - lat1);
 
@@ -278,15 +258,21 @@ public class Map implements Serializable {
      *
      * @param start start node
      * @param end end node
-     * @return
+     * @return distance meters
      */
-    protected double calculateDistance(Node start, Node end){
+    protected static double calculateDistance(Node start, Node end){
 
         return calculateDistance(start.getLongitude(), start.getLatitude(), end.getLongitude(), end.getLatitude());
     }
 
-
-    protected double calculateDistance(Node start, double lon2, double lat2){
+    /**
+     * Calculate distance between start node and end coordinates
+     * @param start start node
+     * @param lon2 coordinate
+     * @param lat2 coordinate
+     * @return distance meters
+     */
+    protected static double calculateDistance(Node start, double lon2, double lat2){
         return calculateDistance(start.getLongitude(), start.getLatitude(), lon2, lat2);
     }
 
@@ -297,7 +283,7 @@ public class Map implements Serializable {
      * @param b
      * @return
      */
-    protected double findDistance(Node a, Node b){
+    protected static double findDistance(Node a, Node b){
 
         for (Edge e: a.getEdge()) {
 

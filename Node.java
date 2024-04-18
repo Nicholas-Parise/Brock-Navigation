@@ -77,15 +77,7 @@ public class Node implements Serializable, Comparable<Node>{
 
     @Override
     public String toString() {
-        return "Node{" +
-                "id=" + id +
-                ", longitude=" + longitude +
-                ", latitude=" + latitude +
-                ", floor=" + floor +
-                ", Label='" + Label + '\'' +
-                ", description='" + description + '\'' +
-                ", type=" + type +
-                '}';
+        return Label;
     }
 
     @Override

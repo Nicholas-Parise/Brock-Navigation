@@ -13,6 +13,13 @@ public class PathFinder implements Serializable {
         this.map = map;
     }
 
+
+    /**
+     * uses dijkstra algorithm to find the shortest path between two nodes
+     * @param start starting node
+     * @param end ending node
+     * @return list of steps to get from start to finish
+     */
     protected ArrayList<Node> shortestPath(String start, String end){
 
         Node s = map.getNode(start);
@@ -37,7 +44,7 @@ public class PathFinder implements Serializable {
         ArrayList<Node> sequence = new ArrayList<>();
 
         dist[start.getId()] = 0;
-        pqueue.add(start.setPriority(0));   // we add the start node to the queue
+        pqueue.add(start.setPriority(0));   // we set the priority to 0, and we add the start node to the queue
 
         for (int i = 0; i < V; i++) {
             if(i!=start.getId()) {
