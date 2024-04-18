@@ -132,7 +132,6 @@ public class Navigator implements Serializable {
         return map.getNode(label);
     }
 
-
     public ArrayList<Node> getRooms(){return map.getRooms();}
 
 }
