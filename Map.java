@@ -212,7 +212,7 @@ public class Map implements Serializable {
         for (Node node: temp) {
             dist = calculateDistance(node, longitude, latitude);
             // if the floor is equal to floor. Or if there is the all flag
-            if(floor == -1 || floor == node.getFloor()) {
+            if(floor == -1 || floor == node.getFloor() || floor/100 == node.getFloor()) {
                 pq.add(new Edge(node, dist));
             }
         }
