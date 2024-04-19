@@ -102,7 +102,7 @@ public class Navigator implements Serializable {
      * @param floor specific floor of node (-1 is for all floors)
      * @return list of the closest nodes of type: type
      */
-    protected ArrayList<Node> getClosestNode(double longitude, double latitude, int number, NodeType type, int floor) {
+    public ArrayList<Node> getClosestNode(double longitude, double latitude, int number, NodeType type, int floor) {
         return map.getClosestNode(longitude,latitude,number,type,floor);
     }
 
