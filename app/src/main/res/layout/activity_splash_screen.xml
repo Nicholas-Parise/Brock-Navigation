@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SplashScreen"
+    android:orientation="vertical"
+    android:background="@color/BrockRed">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Mackenzie Chown Maze Solver"
+        android:gravity="center|bottom"
+        android:textSize="40sp"
+        android:textColor="@color/white"
+        />
+
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dip"
+        style="@android:style/Widget.Holo.Light.ProgressBar.Horizontal"
+        android:progressTint="@color/white"
+        android:id="@+id/progress"
+        android:max="100"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:gravity="top|center"
+        android:textSize="25sp"
+        android:textColor="@color/white"
+        android:id="@+id/progressText"
+        android:text="Installing Map Data..."
+        />
+
+
+</LinearLayout>

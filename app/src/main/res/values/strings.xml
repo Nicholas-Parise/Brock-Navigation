@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Mackenzie Chown Maze Solver</string>
+
+    <string-array name="floor_array">
+        <item>200</item>
+        <item>300</item>
+        <item>400</item>
+    </string-array>
+
+</resources>
