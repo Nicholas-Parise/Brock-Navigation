@@ -1,5 +1,4 @@
 <html>
-
 <head>
 <meta http-equiv=Content-Type content="text/html; charset=utf-8">
 <meta name=Generator content="Microsoft Word 15 (filtered)">
@@ -83,7 +82,7 @@ issue.</span></p>
 
 <p class=MsoNormal align=center style='text-align:center'><span lang=EN
 style='font-size:12.0pt;line-height:115%'><img width=278 height=538
-id=image5.png src="MC%20Maze%20Solver%20Documentation_files/image001.png"></span></p>
+id=image5.png src="Images/image001.png"></span></p>
 
 <p class=MsoNormal align=center style='text-align:center'><span lang=EN
 style='font-size:12.0pt;line-height:115%'>&nbsp;</span></p>
@@ -166,7 +165,7 @@ clear=all style='page-break-before:always'>
   <td width=296 valign=top style='width:222.0pt;border:none;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
   <p class=MsoNormal align=center style='text-align:center'><span lang=EN><img
   width=238 height=451 id=image2.png
-  src="MC%20Maze%20Solver%20Documentation_files/image002.png"></span></p>
+  src="Images/image002.png"></span></p>
   <p class=MsoNormal align=center style='text-align:center'><i><span lang=EN
   style='font-size:12.0pt;line-height:115%'>Figure 1</span></i><span lang=EN
   style='font-size:12.0pt;line-height:115%'>. First launch</span></p>
@@ -190,7 +189,7 @@ clear=all style='page-break-before:always'>
   <td width=296 valign=top style='width:222.0pt;border:none;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
   <p class=MsoNormal align=center style='text-align:center'><span lang=EN
   style='font-size:12.0pt;line-height:115%'><img width=282 height=189
-  id=image3.png src="MC%20Maze%20Solver%20Documentation_files/image003.png"></span></p>
+  id=image3.png src="Images//image003.png"></span></p>
   <p class=MsoNormal align=center style='text-align:center'><i><span lang=EN
   style='font-size:12.0pt;line-height:115%'>Figure 2</span></i><span lang=EN
   style='font-size:12.0pt;line-height:115%'>. Floor change</span></p>
@@ -206,7 +205,7 @@ clear=all style='page-break-before:always'>
   <td width=334 valign=top style='width:250.5pt;border:none;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
   <p class=MsoNormal align=center style='text-align:center'><span lang=EN
   style='font-size:12.0pt;line-height:115%'><img width=298 height=467
-  id=image4.png src="MC%20Maze%20Solver%20Documentation_files/image004.png"></span></p>
+  id=image4.png src="Images//image004.png"></span></p>
   <p class=MsoNormal align=center style='text-align:center'><i><span lang=EN
   style='font-size:12.0pt;line-height:115%'>Figure 3</span></i><span lang=EN
   style='font-size:12.0pt;line-height:115%'>. Map screen</span></p>
@@ -214,7 +213,7 @@ clear=all style='page-break-before:always'>
   style='font-size:12.0pt;line-height:115%'>&nbsp;</span></p>
   <p class=MsoNormal align=center style='text-align:center'><span lang=EN><img
   width=284 height=206 id=image1.png
-  src="MC%20Maze%20Solver%20Documentation_files/image005.png"></span></p>
+  src="Images//image005.png"></span></p>
   <p class=MsoNormal align=center style='text-align:center'><i><span lang=EN
   style='font-size:12.0pt;line-height:115%'>Figure 4.</span></i><span lang=EN
   style='font-size:12.0pt;line-height:115%'> Floor select</span></p>
