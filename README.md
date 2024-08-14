@@ -3,7 +3,7 @@
 <meta http-equiv=Content-Type content="text/html; charset=utf-8">
 <meta name=Generator content="Microsoft Word 15 (filtered)">
 <style>
-<!--
+
  /* Font Definitions */
  @font-face
 	{font-family:"Cambria Math";
@@ -48,7 +48,7 @@ div.WordSection1
 	{margin-bottom:0in;}
 ul
 	{margin-bottom:0in;}
--->
+
 </style>
 
 </head>
@@ -64,11 +64,11 @@ lang=EN>Mackenzie Chown Maze Solver</span></p>
 
 <p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span lang=EN>●<span
 style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
-lang=EN>Geoffrey Jensen (7148710)</span></p>
+lang=EN>Geoffrey Jensen</span></p>
 
 <p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span lang=EN>●<span
 style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
-lang=EN>Nicholas Parise (7242530)</span></p>
+lang=EN>Nicholas Parise</span></p>
 
 <h2><a name="_vmseg7rvnlbj"></a><span lang=EN>App Description</span></h2>
 
