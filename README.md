@@ -11,7 +11,7 @@
 <p class=MsoTitle align=center style='text-align:center'><a name="_hy1e1p8es9r0"></a><span
 lang=EN>Mackenzie Chown Maze Solver</span></p>
 
-<h2><a name="_s0ozdzgd3plc"></a><span lang=EN>Authors </span></h2>
+<h2>Authors</h2>
 
 <p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span lang=EN>●<span
 style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
@@ -20,6 +20,9 @@ lang=EN>Geoffrey Jensen</span></p>
 <p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span lang=EN>●<span
 style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
 lang=EN>Nicholas Parise</span></p>
+
+<h2>Download</h2>
+The APK can be found at this google drive <a href="https://drive.google.com/file/d/1u4VdEwharwNgPS4EjNXo-659mdtf95HK/view?usp=drive_link">Download Link</a>.
 
 <h2><a name="_vmseg7rvnlbj"></a><span lang=EN>App Description</span></h2>
 
