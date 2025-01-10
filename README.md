@@ -6,13 +6,8 @@
 
 <h2>Authors</h2>
 
-<p  style='margin-left:.5in;text-indent:-.25in'><span >●<span
-style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
->Geoffrey Jensen</span></p>
-
-<p  style='margin-left:.5in;text-indent:-.25in'><span >●<span
-style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
->Nicholas Parise</span></p>
+<p style='margin-left:.5in;text-indent:-.25in'>●&nbsp;&nbsp;&nbsp;&nbsp;Geoffrey Jensen</p>
+<p  style='margin-left:.5in;text-indent:-.25in'>●&nbsp;&nbsp;&nbsp;&nbsp;Nicholas Parise</p>
 
 <h2>Download</h2>
 The APK can be found at this google drive <a href="https://drive.google.com/file/d/1u4VdEwharwNgPS4EjNXo-659mdtf95HK/view?usp=drive_link">Download Link</a>.
@@ -48,7 +43,7 @@ using the GraphicsOverlay of the MapView.</p>
 
 <h2>Data</h2>
 
-<p>Our APK comes with three asset files.</p>
+<p>Our APK comes with three asset files. This data was tediously collected using ArcGIS Pro.</p>
 
 <ol>
  <li>Map.mmpk which contains the geographic mapping data.</li>
@@ -57,17 +52,9 @@ using the GraphicsOverlay of the MapView.</p>
       Brock’s Facilities Management, which we then converted to TIFF files, and
       finally georeferenced with ArcGIS Pro to create raster layers.</li>
  </ol>
- <li>nodes.csv which contains all of the nodes that make up our graph of the building.</li>
- <ol>
-  <li>There are over 800 nodes.</li>
- </ol>
- <li>edges.csv which contains all of the edges in our graph of the building.</li>
- <ol>
-  <li>There are over 1300 edges.</li>
- </ol>
+ <li>nodes.csv which contains all of the nodes that make up our graph of the building. This file contains over 800 nodes.</li>
+ <li>edges.csv which contains all of the edges in our graph of the building. This file contains over 1300 edges</li>
 </ol>
-
-<p >We tediously collected the graph data ourselves with the help of ArcGIS Pro.</p>
 
 <h2>Routing</h2>
 
